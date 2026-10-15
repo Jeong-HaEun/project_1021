@@ -12,6 +12,10 @@ export default defineConfig({
     rolldownOptions: {
       input: {
         main: 'index.html',
+        products: 'products.html',
+        routine: 'routine.html',
+        guides: 'guides.html',
+        brand: 'brand.html',
         login: 'login.html',
         signup: 'signup.html',
         board: 'board.html',

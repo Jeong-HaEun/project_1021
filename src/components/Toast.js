@@ -1,6 +1,7 @@
 // 토스트 메시지 — 화면 위쪽 가운데에 잠깐 나타났다 사라지는 알림
 // 페이지마다 한 개의 상자를 만들어 두고, 새 메시지가 오면 내용만 바꾼다
 import { el } from '../lib/dom.js';
+import '../styles/toast.css'; // 토스트를 쓰는 곳 어디서든 스타일이 따라오게
 
 const SHOW_MS = 3000; // 3초 동안 보여준다
 let box = null;

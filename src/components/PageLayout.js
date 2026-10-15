@@ -1,12 +1,13 @@
-// 모든 페이지 공통 틀: 상단 메뉴 + 본문 + 하단 고정 "비공식 컨셉" 고지
+// 모든 페이지 공통 틀: 최상단 띠 + 상단 메뉴 + 본문 + 하단 고정 "비공식 컨셉" 고지
 // 페이지마다 이 함수를 쓰면 고지 문구가 빠질 일이 없다
 import { ConceptNotice } from './ConceptNotice.js';
+import { PromoBar } from './PromoBar.js';
 import { SiteNav } from './SiteNav.js';
 
 export function PageLayout(...sections) {
   const main = document.createElement('main');
   main.append(...sections);
-  document.querySelector('#app').append(SiteNav(), main, ConceptNotice());
+  document.querySelector('#app').append(PromoBar(), SiteNav(), main, ConceptNotice());
   return main;
 }
 

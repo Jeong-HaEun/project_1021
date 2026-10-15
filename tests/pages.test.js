@@ -27,3 +27,24 @@ describe('회원가입 화면 안내', () => {
     expect(source).toContain('실습용 데모 페이지입니다. 실제 개인정보를 입력하지 마세요');
   });
 });
+
+// 메뉴가 가리키는 페이지가 실제로 있는지 (빈 링크·404 방지)
+describe('상단 메뉴 링크', () => {
+  const navSource = readFileSync('src/components/SiteNav.js', 'utf8');
+  const hrefs = [...navSource.matchAll(/href: '\.\/([^']+\.html)'/g)].map((m) => m[1]);
+
+  it('메뉴가 5개 이상 있다', () => {
+    expect(hrefs.length).toBeGreaterThanOrEqual(5);
+  });
+  it.each(hrefs)('%s 파일이 존재한다', (href) => {
+    expect(pages).toContain(href);
+  });
+});
+
+// 새 HTML을 만들고 빌드 목록에 빠뜨리면 배포 사이트에서 404가 난다
+describe('빌드 설정', () => {
+  const config = readFileSync('vite.config.js', 'utf8');
+  it.each(pages)('%s가 vite.config.js 빌드 목록에 있다', (page) => {
+    expect(config).toContain(`'${page}'`);
+  });
+});
