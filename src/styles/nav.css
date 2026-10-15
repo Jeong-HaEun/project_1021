@@ -8,20 +8,21 @@
 }
 
 /* 상품명 · 가격 · 안내를 한 줄로, 좁은 화면에서는 안내만 다음 줄로 넘어간다
-   띠 전체가 하나의 링크라 클릭 영역이 넓다 (최소 높이 44px) */
+   높이는 공식몰 상단 띠와 같은 30px (원본 CSS 실측), 글자 12px */
 .promo-bar a {
   display: inline-flex;
   flex-wrap: wrap;
   justify-content: center;
-  align-items: baseline;
-  gap: 2px 10px;
-  min-height: 44px;
-  padding: 8px 16px;
+  align-items: center;
+  align-content: center;
+  gap: 0 8px;
+  min-height: 30px;
+  padding: 3px 16px;
   color: var(--color-brown);
   font-family: var(--font-ko);
-  font-size: 13px;
+  font-size: 12px;
   font-weight: 500;
-  line-height: 1.5;
+  line-height: 1.4;
   text-decoration: none;
 }
 
@@ -43,7 +44,7 @@
 /* "배송비 별도 · 공식몰 ↗" — 가격이 최종 결제금액처럼 보이지 않게 하는 보조 안내 */
 .promo-bar__meta {
   color: var(--color-text-sub);
-  font-size: 12px;
+  font-size: 11px;
   font-weight: 400;
 }
 
