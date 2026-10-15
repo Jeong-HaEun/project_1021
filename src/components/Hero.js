@@ -2,12 +2,13 @@
 //
 // 문구 근거: 원본 메인 메타 설명 "약사가 설계한 피부장벽 루틴 솔루션" (2026-10-15 확인)
 // 영문 슬로건 "Own Your Natural Glow"는 원본 슬로건 → 작고 연한 보조 요소로만 둔다
-// 버튼은 할인 혜택이 없는 일반 워터락 세럼(150ml) 상세로 연결 → "혜택"을 약속하지 않는 문구 사용
+// 버튼은 우리 제품 페이지의 일반 워터락 세럼(150ml) 위치로 연결 → "혜택"을 약속하지 않는 문구 사용
+// ⚠ 공식몰(cecith.kr)로는 연결하지 않는다 (브랜드 허락 없음)
 // (상단 안내 바의 30ml 미니 세럼과 헷갈리지 않도록 용량을 함께 표기)
 import { el } from '../lib/dom.js';
 
 export const HERO_PRODUCT = {
-  url: 'https://cecith.kr/product/detail.html?product_no=11',
+  url: './products.html#serum',
   name: '워터락 퍼스트 세럼 150ml',
 };
 
@@ -48,14 +49,11 @@ export function Hero() {
       el('a', {
         className: 'hero__cta',
         href: HERO_PRODUCT.url,
-        target: '_blank',
-        rel: 'noopener noreferrer',
-        'aria-label': `워터락 세럼 자세히 보기: ${HERO_PRODUCT.name}, 공식몰 상품 페이지 새 창으로 열기`,
+        'aria-label': `워터락 세럼 자세히 보기: ${HERO_PRODUCT.name}`,
       }, [
         el('span', { text: '워터락 세럼 자세히 보기' }),
-        el('span', { 'aria-hidden': 'true', text: '↗' }),
       ]),
-      el('p', { className: 'hero__cta-note', text: `${HERO_PRODUCT.name} · 공식몰` }),
+      el('p', { className: 'hero__cta-note', text: HERO_PRODUCT.name }),
     ]),
   ]);
 }
