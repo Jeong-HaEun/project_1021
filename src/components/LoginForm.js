@@ -45,7 +45,7 @@ export function LoginForm() {
     }
   }
 
-  return el('section', { className: 'auth', 'aria-labelledby': 'login-title' }, [
+  return el('section', { className: 'auth auth--login', 'aria-labelledby': 'login-title' }, [
     AuthLogo(),
     WelcomeBenefits(), // 환영 문구 + 신규 회원 혜택 (제목 h1 포함)
     form,

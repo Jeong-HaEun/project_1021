@@ -1,0 +1,116 @@
+/* 로그인 화면 전용 스타일 (환영 문구·혜택, 카카오 버튼, 한 화면에 들어오게 하는 간격)
+   목표: 배율 100%·125%(창 높이 약 695px)에서도 스크롤 없이 카카오 버튼·회원가입 링크까지 보이기 */
+
+/* 로그인 화면은 세로 간격을 조금씩 좁힌다 (입력칸 크기는 그대로) */
+/* 이 파일은 로그인 페이지에서만 불러오므로, 공통 틀의 위 여백을 로그인에서만 줄인다 */
+.bare-main {
+  padding-top: 24px;
+}
+
+.auth--login .auth__logo {
+  margin-bottom: 14px;
+  font-size: 24px;
+}
+
+.auth--login .form-field {
+  margin-bottom: 10px;
+  gap: 4px;
+}
+
+.auth--login .auth__switch {
+  margin-top: 12px;
+}
+
+.auth--login .auth__switch + .auth__switch {
+  margin-top: 6px;
+}
+
+/* 로그인 버튼: 카카오 버튼과 같은 모양(높이 48px, 둥근 모서리 12px) */
+.auth--login .auth-form .btn-primary {
+  min-height: 48px;
+  border-radius: 12px;
+  margin-top: 4px;
+}
+
+/* ── 로그인: 환영 문구 + 신규 회원 혜택 ── */
+.welcome {
+  margin-bottom: 14px;
+  text-align: center;
+}
+
+/* 환영 문구: 굵은 검정 고딕 → 가늘고 넓은 자간의 브라운 글씨로, 세리프 로고·베이지 톤과 어울리게
+   (CLAUDE.md: 한글은 Pretendard만 사용) */
+.welcome__title {
+  margin: 0 0 10px;
+  color: var(--color-brown-dark);
+  font-family: var(--font-ko);
+  font-size: 21px;
+  font-weight: 300;
+  letter-spacing: 0.02em;
+}
+
+/* 혜택 3가지를 한 줄 3칸으로 → 입력칸이 스크롤 없이 보이도록 높이를 아낀다 */
+.welcome__list {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  margin: 0;
+  padding: 8px 0;
+  list-style: none;
+  background: var(--color-bg-section);
+}
+
+.welcome__item {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 0 4px;
+}
+
+.welcome__item + .welcome__item {
+  border-left: 1px solid var(--color-line);
+}
+
+.welcome__label {
+  color: var(--color-text-sub);
+  font-size: 12px;
+}
+
+.welcome__value {
+  color: var(--color-brown);
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.welcome__note {
+  margin: 6px 0 0;
+  color: var(--color-text-sub);
+  font-size: 11px;
+}
+
+/* ── 카카오 로그인 버튼 (카카오 디자인 가이드: 노란 배경, 검은 심볼, 둥근 모서리) ── */
+.btn-kakao {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  min-height: 48px;
+  margin-top: 8px;
+  border: none;
+  border-radius: 12px;
+  background: var(--color-kakao-bg);
+  color: var(--color-kakao-text);
+  font: inherit;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.btn-kakao:disabled {
+  opacity: 0.6;
+  cursor: wait;
+}
+
+.btn-kakao__icon {
+  display: inline-flex;
+}
+
