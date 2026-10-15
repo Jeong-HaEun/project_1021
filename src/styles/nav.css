@@ -4,7 +4,6 @@
    - 원본 띠 배경은 페이지색(#fafafc)이라 눈에 덜 띔 → 클릭 유도를 위해
      원본 헤더에 쓰인 브랜드 베이지(#f6e4d1)를 배경으로 사용 */
 .promo-bar {
-  border-bottom: 1px solid var(--color-line);
   background: var(--color-bg-accent);
   text-align: center;
 }
@@ -40,18 +39,19 @@
   justify-content: space-between;
   gap: 8px 24px;
   padding: 12px 16px 0;
-  border-bottom: 1px solid var(--color-line);
-  background: var(--color-bg);
+  /* 메뉴 바는 브랜드 브라운, 위쪽 혜택 띠(연한 베이지)와 대비되게 */
+  background: var(--color-brown);
+  color: var(--color-bg);
 }
 
 .site-nav a {
-  color: var(--color-text);
+  color: var(--color-bg);
   text-decoration: none;
 }
 
 .site-nav a:hover,
 .site-nav a:focus-visible {
-  color: var(--color-brown);
+  color: var(--color-bg-accent);
 }
 
 .site-nav__brand {
@@ -86,7 +86,7 @@
 
 /* 지금 보고 있는 페이지 메뉴 밑줄 */
 .site-nav__links a[aria-current='page'] {
-  border-bottom-color: var(--color-brown-dark);
+  border-bottom-color: var(--color-bg-accent);
 }
 
 /* 오른쪽 작은 영역: 로그인 + 장바구니 */
@@ -104,10 +104,11 @@
 }
 
 .site-nav__name {
-  color: var(--color-text-sub);
+  color: var(--color-bg-accent);
 }
 
 .site-nav__icon {
+  color: var(--color-bg);
   min-width: 44px;
   min-height: 44px;
   border: none;
@@ -158,4 +159,13 @@
   margin: 0 0 32px;
   color: var(--color-text-sub);
   font-size: 14px;
+}
+
+/* 브라운 메뉴 바 안의 글자 버튼(로그아웃)도 밝은 색으로 */
+.site-nav .btn-text {
+  color: var(--color-bg);
+}
+
+.site-nav .btn-text:hover {
+  color: var(--color-bg-accent);
 }
