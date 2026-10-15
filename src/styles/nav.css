@@ -48,15 +48,17 @@
   font-weight: 400;
 }
 
-/* 상단 메뉴 — 모바일: 1줄(브랜드·로그인·장바구니) + 2줄(메뉴, 가로 스크롤)
-   넓은 화면: 브랜드 | 메뉴 | 로그인·장바구니 한 줄 */
+/* 상단 메뉴 (원본 cecith.kr 헤더 실측 기준: 높이 60px, 메뉴 14px·굵기 400, 로고 가운데)
+   - 넓은 화면: [메뉴(왼쪽)] [로고(가운데)] [로그인·장바구니(오른쪽)] 한 줄
+   - 모바일: 1줄 [빈칸] [로고] [로그인·장바구니], 2줄 메뉴(가로 스크롤) */
 .site-nav {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  grid-template-areas:
+    '. brand user'
+    'menu menu menu';
   align-items: center;
-  justify-content: space-between;
-  gap: 8px 24px;
-  padding: 12px 16px 0;
+  padding: 0 16px;
   /* 메뉴 바는 원본 헤더와 같은 베이지 배경 + 진한 글자 */
   background: var(--color-bg-accent);
   color: var(--color-text);
@@ -73,14 +75,24 @@
 }
 
 .site-nav__brand {
+  grid-area: brand;
+  padding: 10px 0;
   font-family: var(--font-title-en);
-  font-size: 20px;
+  font-size: 18px;
   letter-spacing: 0.04em;
+  white-space: nowrap;
+}
+
+/* 아주 좁은 화면(360px 등)에서 가운데 로고가 오른쪽 로그인과 붙지 않게 */
+@media (max-width: 380px) {
+  .site-nav__brand {
+    font-size: 16px;
+  }
 }
 
 .site-nav__menu {
-  order: 3;
-  width: 100%;
+  grid-area: menu;
+  min-width: 0;
   /* 메뉴 5개가 좁은 화면에서 줄바꿈되지 않고 옆으로 밀리도록 */
   overflow-x: auto;
   scrollbar-width: none;
@@ -92,27 +104,31 @@
   margin: 0;
   padding: 0;
   list-style: none;
-  font-size: 15px;
+  font-size: 14px;
+  font-weight: 400;
+  letter-spacing: 0.02em;
   white-space: nowrap;
 }
 
 .site-nav__links a {
   display: inline-block;
-  padding: 12px 0;
-  border-bottom: 2px solid transparent;
+  padding: 8px 0 10px;
+  border-bottom: 1px solid transparent;
 }
 
-/* 지금 보고 있는 페이지 메뉴 밑줄 */
+/* 지금 보고 있는 페이지 메뉴 밑줄 (얇게) */
 .site-nav__links a[aria-current='page'] {
   border-bottom-color: var(--color-brown);
 }
 
 /* 오른쪽 작은 영역: 로그인 + 장바구니 */
 .site-nav__user {
+  grid-area: user;
+  justify-self: end;
   display: flex;
   align-items: center;
   gap: 4px;
-  font-size: 13px;
+  font-size: 12px;
 }
 
 .site-nav__login {
@@ -127,32 +143,32 @@
 
 .site-nav__icon {
   color: var(--color-text);
-  min-width: 44px;
-  min-height: 44px;
+  min-width: 40px;
+  min-height: 40px;
   border: none;
   background: none;
-  font-size: 18px;
+  font-size: 16px;
   cursor: pointer;
 }
 
 @media (min-width: 900px) {
   .site-nav {
-    flex-wrap: nowrap;
+    grid-template-areas: 'menu brand user';
+    min-height: 60px;
     padding: 0 40px;
   }
 
-  .site-nav__menu {
-    order: 0;
-    width: auto;
-    margin-right: auto;
+  .site-nav__brand {
+    padding: 0;
+    font-size: 24px;
   }
 
   .site-nav__links {
-    gap: 28px;
+    gap: 32px;
   }
 
   .site-nav__links a {
-    padding: 22px 0;
+    padding: 19px 0 18px;
   }
 }
 
