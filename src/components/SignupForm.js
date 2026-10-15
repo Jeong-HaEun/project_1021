@@ -27,6 +27,7 @@ export function SignupForm() {
 
   async function handleSubmit(event) {
     event.preventDefault(); // 페이지 새로고침 막기
+    if (!handleInput()) return; // 필수 칸이 비었으면 눌러도 아무 일 없음
     const values = readForm(form);
 
     // 1) 비밀번호 일치 → 이메일 형식 → 비밀번호 길이 → 닉네임 길이 순으로 확인

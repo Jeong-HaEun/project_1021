@@ -19,6 +19,7 @@ export function LoginForm() {
 
   async function handleSubmit(event) {
     event.preventDefault(); // 페이지 새로고침 막기
+    if (!handleInput()) return; // 필수 칸이 비었으면 눌러도 아무 일 없음
     const values = readForm(form);
 
     // 1) 서버에 보내기 전에 형식 확인 (이메일 모양, 비밀번호 길이)
