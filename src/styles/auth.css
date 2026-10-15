@@ -1,0 +1,62 @@
+/* 로그인·회원가입 화면 — 상단 메뉴 없이 폼을 가운데에 둔다 */
+.bare-main {
+  display: flex;
+  justify-content: center;
+  min-height: 100vh;
+  padding-top: 64px;
+}
+
+.auth {
+  width: 100%;
+  max-width: 400px;
+}
+
+/* 로고 텍스트: 영문 제목 글꼴 */
+.auth__logo {
+  display: block;
+  margin-bottom: 40px;
+  color: var(--color-text);
+  font-family: var(--font-title-en);
+  font-size: 28px;
+  letter-spacing: 0.04em;
+  text-align: center;
+  text-decoration: none;
+}
+
+.auth__title {
+  margin: 0 0 24px;
+  font-size: 20px;
+  font-weight: 500;
+}
+
+/* 데모 안내 — 꼭 눈에 띄어야 하므로 강조 배경 사용 */
+.demo-warning {
+  margin: 0 0 24px;
+  padding: 12px 16px;
+  background: var(--color-bg-accent);
+  font-size: 14px;
+}
+
+.auth-form .btn-primary {
+  width: 100%;
+  margin-top: 8px;
+}
+
+/* 버튼 아래 "회원가입 / 로그인" 이동 링크 */
+.auth__switch {
+  margin: 24px 0 0;
+  color: var(--color-text-sub);
+  font-size: 14px;
+  text-align: center;
+}
+
+.auth__switch a {
+  color: var(--color-brown);
+}
+
+@media (min-width: 768px) {
+  .bare-main {
+    align-items: flex-start;
+    padding-top: 96px;
+  }
+}

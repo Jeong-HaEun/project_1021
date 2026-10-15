@@ -1,0 +1,82 @@
+/* 입력 폼·버튼 공통 스타일 (로그인, 게시판 함께 사용) */
+.form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 16px;
+}
+
+/* hidden 속성이 위의 display:flex에 덮이지 않게 (로그인 탭에서 닉네임 칸 숨김) */
+.form-field[hidden] {
+  display: none;
+}
+
+.form-field label {
+  font-size: 14px;
+  color: var(--color-text-sub);
+}
+
+.form-field input,
+.form-field textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid var(--color-line);
+  border-radius: 0;
+  background: var(--color-bg);
+  color: var(--color-text);
+  font: inherit;
+  /* 16px 미만이면 아이폰에서 입력 시 화면이 확대된다 */
+  font-size: 16px;
+}
+
+.form-field input:focus-visible,
+.form-field textarea:focus-visible {
+  outline: 1px solid var(--color-brown);
+  border-color: var(--color-brown);
+}
+
+.form-field textarea {
+  resize: vertical;
+}
+
+.btn-primary {
+  min-height: 48px;
+  padding: 0 28px;
+  border: none;
+  background: var(--color-brown-dark);
+  color: var(--color-bg);
+  font: inherit;
+  cursor: pointer;
+}
+
+.btn-primary:hover {
+  background: var(--color-brown);
+}
+
+.btn-primary:disabled {
+  opacity: 0.5;
+  cursor: wait;
+}
+
+.btn-text {
+  min-height: 44px;
+  padding: 0 4px;
+  border: none;
+  background: none;
+  color: var(--color-text-sub);
+  font: inherit;
+  font-size: 14px;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.btn-text:hover {
+  color: var(--color-brown);
+}
+
+.form-message {
+  min-height: 1.6em;
+  margin: 12px 0 0;
+  font-size: 14px;
+  color: var(--color-brown);
+}

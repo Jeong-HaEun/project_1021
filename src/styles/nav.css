@@ -1,0 +1,64 @@
+/* 상단 메뉴 — 모바일에서는 2줄(브랜드·로그인 / 메뉴), 넓은 화면에서는 1줄 */
+.site-nav {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px 24px;
+  padding: 16px;
+  border-bottom: 1px solid var(--color-line);
+  background: var(--color-bg);
+}
+
+.site-nav a {
+  color: var(--color-text);
+  text-decoration: none;
+}
+
+.site-nav a:hover,
+.site-nav a:focus-visible {
+  color: var(--color-brown);
+}
+
+.site-nav__brand {
+  font-family: var(--font-title-en);
+  font-size: 20px;
+  letter-spacing: 0.04em;
+}
+
+.site-nav nav {
+  order: 3;
+  width: 100%;
+}
+
+.site-nav__links {
+  display: flex;
+  gap: 24px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: 14px;
+}
+
+.site-nav__user {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 14px;
+}
+
+.site-nav__name {
+  color: var(--color-text-sub);
+}
+
+@media (min-width: 768px) {
+  .site-nav {
+    padding: 20px 40px;
+  }
+
+  .site-nav nav {
+    order: 0;
+    width: auto;
+    margin-right: auto;
+  }
+}
