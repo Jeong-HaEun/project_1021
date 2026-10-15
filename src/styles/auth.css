@@ -72,3 +72,89 @@
 .auth__switch + .auth__switch {
   margin-top: 8px;
 }
+
+/* ── 로그인: 환영 문구 + 신규 회원 혜택 ── */
+.welcome {
+  margin-bottom: 28px;
+  text-align: center;
+}
+
+.welcome__title {
+  margin: 0 0 16px;
+  font-size: 20px;
+  font-weight: 500;
+}
+
+/* 혜택 3가지를 한 줄 3칸으로 → 입력칸이 스크롤 없이 보이도록 높이를 아낀다 */
+.welcome__list {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  margin: 0;
+  padding: 12px 0;
+  list-style: none;
+  background: var(--color-bg-section);
+}
+
+.welcome__item {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 0 4px;
+}
+
+.welcome__item + .welcome__item {
+  border-left: 1px solid var(--color-line);
+}
+
+.welcome__label {
+  color: var(--color-text-sub);
+  font-size: 12px;
+}
+
+.welcome__value {
+  color: var(--color-brown);
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.welcome__note {
+  margin: 8px 0 0;
+  color: var(--color-text-sub);
+  font-size: 11px;
+}
+
+/* 아이디 찾기 · 비밀번호 찾기 줄 */
+.auth__find {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+}
+
+/* ── 아이디 찾기 안내 ── */
+.find-id__list {
+  margin: 0 0 24px;
+  padding: 0;
+  list-style: none;
+}
+
+.find-id__item {
+  padding: 16px 0;
+  border-top: 1px solid var(--color-line);
+}
+
+.find-id__title {
+  margin: 0 0 4px;
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.find-id__text {
+  margin: 0;
+  color: var(--color-text-sub);
+  font-size: 14px;
+}
+
+.btn-block {
+  justify-content: center;
+  width: 100%;
+}

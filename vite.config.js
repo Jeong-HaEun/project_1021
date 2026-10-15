@@ -18,6 +18,7 @@ export default defineConfig({
         write: 'write.html',
         forgot: 'forgot.html',
         reset: 'reset.html',
+        findId: 'find-id.html',
       },
     },
   },

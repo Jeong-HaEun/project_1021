@@ -1,9 +1,11 @@
-// 로그인 화면 — 로고, 이메일, 비밀번호, 로그인 버튼, 회원가입 링크
+// 로그인 화면 — 로고, 환영·혜택, 이메일, 비밀번호, 로그인 버튼,
+// 아이디·비밀번호 찾기, 회원가입 링크
 import { el } from '../lib/dom.js';
 import { signIn } from '../lib/auth.js';
 import { toKoreanError, validateLogin } from '../lib/validation.js';
 import { AuthField, AuthLogo, AuthSwitchLink, bindRequiredFields, readForm } from './AuthParts.js';
 import { showToast } from './Toast.js';
+import { WelcomeBenefits } from './WelcomeBenefits.js';
 
 // 두 칸을 모두 입력해야 로그인 버튼이 눌린다
 const REQUIRED = ['email', 'password'];
@@ -44,10 +46,14 @@ export function LoginForm() {
 
   return el('section', { className: 'auth', 'aria-labelledby': 'login-title' }, [
     AuthLogo(),
-    el('h1', { id: 'login-title', className: 'auth__title', text: '로그인' }),
+    WelcomeBenefits(), // 환영 문구 + 신규 회원 혜택 (제목 h1 포함)
     form,
-    // 회원가입 링크 위에 비밀번호 찾기 링크
-    el('p', { className: 'auth__switch' }, el('a', { href: './forgot.html', text: '비밀번호를 잊으셨나요?' })),
+    // 회원가입 링크 위에 아이디 찾기 · 비밀번호 찾기
+    el('p', { className: 'auth__switch auth__find' }, [
+      el('a', { href: './find-id.html', text: '아이디 찾기' }),
+      el('span', { 'aria-hidden': 'true', text: '·' }),
+      el('a', { href: './forgot.html', text: '비밀번호 찾기' }),
+    ]),
     AuthSwitchLink({ question: '아직 회원이 아니신가요?', href: './signup.html', label: '회원가입' }),
   ]);
 }
