@@ -1,4 +1,4 @@
-// 로그인 화면 — 로고, 환영·혜택, 이메일, 비밀번호, 로그인 버튼,
+// 로그인 화면 — 로고, 환영·혜택, 이메일, 비밀번호, 로그인 버튼, 카카오 로그인,
 // 아이디·비밀번호 찾기, 회원가입 링크
 import { el } from '../lib/dom.js';
 import { signIn } from '../lib/auth.js';
@@ -6,6 +6,7 @@ import { toKoreanError, validateLogin } from '../lib/validation.js';
 import { AuthField, AuthLogo, AuthSwitchLink, bindRequiredFields, readForm } from './AuthParts.js';
 import { showToast } from './Toast.js';
 import { WelcomeBenefits } from './WelcomeBenefits.js';
+import { KakaoLoginButton } from './KakaoLoginButton.js';
 
 // 두 칸을 모두 입력해야 로그인 버튼이 눌린다
 const REQUIRED = ['email', 'password'];
@@ -48,6 +49,7 @@ export function LoginForm() {
     AuthLogo(),
     WelcomeBenefits(), // 환영 문구 + 신규 회원 혜택 (제목 h1 포함)
     form,
+    KakaoLoginButton(), // 로그인 버튼 바로 아래
     // 회원가입 링크 위에 아이디 찾기 · 비밀번호 찾기
     el('p', { className: 'auth__switch auth__find' }, [
       el('a', { href: './find-id.html', text: '아이디 찾기' }),

@@ -1,6 +1,6 @@
 // 회원가입·로그인 기능 — Supabase Auth가 비밀번호를 안전하게 관리한다
 // (비밀번호를 우리가 만든 테이블에 저장하지 않는다)
-import { supabase } from './supabase.js';
+import { supabase, SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY } from './supabase.js';
 
 // 회원가입: 닉네임은 metadata로 넘기면 DB 트리거가 profiles에 자동 저장한다
 export async function signUp({ email, password, nickname }) {
@@ -24,6 +24,29 @@ export async function signIn({ email, password }) {
 
 export async function signOut() {
   const { error } = await supabase.auth.signOut();
+  if (error) throw error;
+}
+
+// 소셜 로그인 제공자가 Supabase에서 켜져 있는지 (공개 설정 주소로 확인)
+async function isProviderEnabled(provider) {
+  try {
+    const res = await fetch(`${SUPABASE_URL}/auth/v1/settings`, {
+      headers: { apikey: SUPABASE_PUBLISHABLE_KEY },
+    });
+    const settings = await res.json();
+    return Boolean(settings.external?.[provider]);
+  } catch {
+    return true; // 확인 자체가 실패하면 막지 않고 이동을 시도한다
+  }
+}
+
+// 카카오 로그인: 카카오 로그인 화면으로 이동 → Supabase가 처리 → 메인(index)으로 돌아온다
+// ⚠ Supabase에서 Kakao 제공자를 켜고, 돌아올 주소를 Redirect URLs에 등록해야 동작한다
+export async function signInWithKakao() {
+  // 설정이 꺼진 채로 이동하면 Supabase의 영어 오류 화면이 뜬다 → 먼저 확인
+  if (!(await isProviderEnabled('kakao'))) throw new Error('provider is not enabled');
+  const redirectTo = new URL('./index.html', window.location.href).href;
+  const { error } = await supabase.auth.signInWithOAuth({ provider: 'kakao', options: { redirectTo } });
   if (error) throw error;
 }
 

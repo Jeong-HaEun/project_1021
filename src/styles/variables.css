@@ -22,6 +22,10 @@
   /* 선 */
   --color-line: #dbdbda;
 
+  /* 외부 브랜드 예외: 카카오 로그인 버튼 (카카오 디자인 가이드 지정색, 바꾸지 않는다) */
+  --color-kakao-bg: #fee500;
+  --color-kakao-text: rgba(0, 0, 0, 0.85);
+
   /* 글꼴: 영문 제목 / 영문 본문 / 한글 */
   --font-title-en: 'Marcellus', serif;
   --font-body-en: 'Jost', sans-serif;

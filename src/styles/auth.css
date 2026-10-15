@@ -123,6 +123,33 @@
   font-size: 11px;
 }
 
+/* ── 카카오 로그인 버튼 (카카오 디자인 가이드: 노란 배경, 검은 심볼, 둥근 모서리) ── */
+.btn-kakao {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  min-height: 48px;
+  margin-top: 8px;
+  border: none;
+  border-radius: 12px;
+  background: var(--color-kakao-bg);
+  color: var(--color-kakao-text);
+  font: inherit;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.btn-kakao:disabled {
+  opacity: 0.6;
+  cursor: wait;
+}
+
+.btn-kakao__icon {
+  display: inline-flex;
+}
+
 /* 아이디 찾기 · 비밀번호 찾기 줄 */
 .auth__find {
   display: flex;

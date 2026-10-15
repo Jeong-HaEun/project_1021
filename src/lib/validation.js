@@ -91,6 +91,7 @@ const ERROR_MESSAGES = [
   ['For security purposes', '보안을 위해 잠시 후 다시 요청해 주세요.'],
   ['should be different', '이전과 다른 비밀번호를 입력해 주세요.'],
   ['Auth session missing', '재설정 링크가 만료됐습니다. 다시 요청해 주세요.'],
+  ['provider is not enabled', '카카오 로그인이 아직 설정되지 않았습니다.'],
   ['rate limit', '요청이 너무 많습니다. 잠시 후 다시 시도해 주세요.'],
   ['row-level security', '권한이 없습니다. 로그인 상태를 확인해 주세요.'],
 ];
