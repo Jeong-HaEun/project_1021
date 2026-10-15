@@ -55,7 +55,7 @@
 
 .btn-primary:disabled {
   opacity: 0.5;
-  cursor: wait;
+  cursor: not-allowed;
 }
 
 .btn-text {

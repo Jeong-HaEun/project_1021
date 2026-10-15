@@ -1,5 +1,6 @@
 // 로그인·회원가입 화면이 같이 쓰는 작은 조각들
 import { el } from '../lib/dom.js';
+import { hasAllValues } from '../lib/validation.js';
 
 // 로고 텍스트 — 원본 로고 이미지 대신 글자로만 표시. 누르면 메인으로 이동
 export function AuthLogo() {
@@ -19,8 +20,18 @@ export function AuthSwitchLink({ question, href, label }) {
   return el('p', { className: 'auth__switch' }, [question, ' ', el('a', { href, text: label })]);
 }
 
-// 아직 기능을 연결하지 않았으므로, 버튼을 눌러도 페이지가 새로고침되지 않게만 막는다
-// (로그인·회원가입 기능은 다음 단계에서 이 자리에 연결)
-export function handleSubmitPlaceholder(event) {
-  event.preventDefault();
+// 폼 안의 입력값을 { name: value } 객체로 모은다
+export function readForm(form) {
+  return Object.fromEntries(new FormData(form));
+}
+
+// 필수 칸(requiredKeys)이 모두 채워져야 버튼이 눌리도록 한다
+// 글자를 입력할 때마다(input 이벤트) 다시 확인
+export function bindRequiredFields(form, button, requiredKeys) {
+  function handleInput() {
+    button.disabled = !hasAllValues(readForm(form), requiredKeys);
+  }
+  form.addEventListener('input', handleInput);
+  handleInput(); // 처음엔 비어 있으므로 비활성화 상태로 시작
+  return handleInput; // 전송이 끝난 뒤 버튼 상태를 되돌릴 때 다시 부른다
 }

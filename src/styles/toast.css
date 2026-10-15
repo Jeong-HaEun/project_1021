@@ -1,0 +1,36 @@
+/* 토스트 메시지 — 화면 위쪽 가운데. 평소엔 숨어 있다가 --show가 붙으면 내려온다 */
+.toast {
+  position: fixed;
+  top: 16px;
+  left: 50%;
+  z-index: 200;
+  width: max-content;
+  max-width: calc(100% - 32px);
+  padding: 12px 20px;
+  background: var(--color-bg-dark);
+  color: var(--color-bg);
+  font-family: var(--font-ko);
+  font-size: 14px;
+  text-align: center;
+  opacity: 0;
+  pointer-events: none;
+  transform: translate(-50%, -8px);
+  transition: opacity 0.2s, transform 0.2s;
+}
+
+.toast--show {
+  opacity: 1;
+  transform: translate(-50%, 0);
+}
+
+/* 실패 메시지는 왼쪽에 레드 선 하나로만 구분 (레드는 꼭 필요한 곳에만) */
+.toast[data-type='error'] {
+  border-left: 3px solid var(--color-red);
+}
+
+/* 움직임 줄이기 설정을 켠 사용자에게는 애니메이션 없이 표시 */
+@media (prefers-reduced-motion: reduce) {
+  .toast {
+    transition: none;
+  }
+}

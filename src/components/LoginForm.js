@@ -1,17 +1,50 @@
 // 로그인 화면 — 로고, 이메일, 비밀번호, 로그인 버튼, 회원가입 링크
-// 지금은 화면만 있고 실제 로그인 기능은 아직 연결하지 않았다
 import { el } from '../lib/dom.js';
-import { AuthField, AuthLogo, AuthSwitchLink, handleSubmitPlaceholder } from './AuthParts.js';
+import { signIn } from '../lib/auth.js';
+import { toKoreanError, validateLogin } from '../lib/validation.js';
+import { AuthField, AuthLogo, AuthSwitchLink, bindRequiredFields, readForm } from './AuthParts.js';
+import { showToast } from './Toast.js';
+
+// 두 칸을 모두 입력해야 로그인 버튼이 눌린다
+const REQUIRED = ['email', 'password'];
 
 export function LoginForm() {
+  const submitButton = el('button', { type: 'submit', className: 'btn-primary', text: '로그인' });
+  const form = el('form', { className: 'auth-form', novalidate: '', onSubmit: handleSubmit }, [
+    AuthField({ label: '이메일', name: 'email', type: 'email', autocomplete: 'email' }),
+    AuthField({ label: '비밀번호', name: 'password', type: 'password', autocomplete: 'current-password' }),
+    submitButton,
+  ]);
+  const handleInput = bindRequiredFields(form, submitButton, REQUIRED);
+
+  async function handleSubmit(event) {
+    event.preventDefault(); // 페이지 새로고침 막기
+    const values = readForm(form);
+
+    // 1) 서버에 보내기 전에 형식 확인 (이메일 모양, 비밀번호 길이)
+    const problem = validateLogin(values);
+    if (problem) {
+      showToast(problem);
+      return;
+    }
+
+    // 2) 보내는 동안 버튼을 잠가 중복 클릭 방지
+    submitButton.disabled = true;
+    submitButton.textContent = '로그인 중…';
+    try {
+      await signIn(values);
+      window.location.href = './index.html'; // 성공 → 메인으로
+    } catch (error) {
+      showToast(toKoreanError(error.message)); // 실패 → 한국어 토스트
+      submitButton.textContent = '로그인';
+      handleInput(); // 입력 상태에 맞게 버튼 다시 활성화
+    }
+  }
+
   return el('section', { className: 'auth', 'aria-labelledby': 'login-title' }, [
     AuthLogo(),
     el('h1', { id: 'login-title', className: 'auth__title', text: '로그인' }),
-    el('form', { className: 'auth-form', novalidate: '', onSubmit: handleSubmitPlaceholder }, [
-      AuthField({ label: '이메일', name: 'email', type: 'email', autocomplete: 'email' }),
-      AuthField({ label: '비밀번호', name: 'password', type: 'password', autocomplete: 'current-password' }),
-      el('button', { type: 'submit', className: 'btn-primary', text: '로그인' }),
-    ]),
+    form,
     AuthSwitchLink({ question: '아직 회원이 아니신가요?', href: './signup.html', label: '회원가입' }),
   ]);
 }

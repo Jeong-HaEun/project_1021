@@ -3,6 +3,7 @@ import './styles/variables.css';
 import './styles/base.css';
 import './styles/form.css';
 import './styles/auth.css';
+import './styles/toast.css';
 import { BareLayout } from './components/PageLayout.js';
 import { LoginForm } from './components/LoginForm.js';
 

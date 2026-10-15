@@ -24,13 +24,26 @@ export function validatePassword(password) {
   return '';
 }
 
-export function validateNickname(nickname) {
-  const value = nickname.trim();
-  if (!value) return '닉네임을 입력해 주세요.';
-  if (value.length > LIMITS.nicknameMax) {
+// 닉네임은 선택 입력: 비워 두면 DB가 '사용자_xxxx'로 자동 생성, 입력했다면 길이만 확인
+export function validateNickname(nickname = '') {
+  if (nickname.trim().length > LIMITS.nicknameMax) {
     return `닉네임은 ${LIMITS.nicknameMax}자 이하로 입력해 주세요.`;
   }
   return '';
+}
+
+// 비밀번호와 비밀번호 확인이 같은지
+export function validatePasswordConfirm(password, passwordConfirm) {
+  return password === passwordConfirm ? '' : '비밀번호가 일치하지 않습니다.';
+}
+
+// 필수 칸(keys)이 모두 채워졌는지 → 버튼 활성화 여부 판단에 사용
+// 비밀번호는 공백도 글자로 인정하므로, 이메일만 앞뒤 공백을 지우고 본다
+export function hasAllValues(values, keys) {
+  return keys.every((key) => {
+    const value = values[key] ?? '';
+    return key === 'email' ? value.trim() !== '' : value !== '';
+  });
 }
 
 // 로그인: 이메일 + 비밀번호
@@ -38,9 +51,13 @@ export function validateLogin({ email, password }) {
   return validateEmail(email) || validatePassword(password);
 }
 
-// 회원가입: 로그인 항목 + 닉네임
-export function validateSignup({ email, password, nickname }) {
-  return validateLogin({ email, password }) || validateNickname(nickname);
+// 회원가입: 비밀번호 일치를 가장 먼저 확인 → 이메일·비밀번호 형식 → 닉네임 길이
+export function validateSignup({ email, password, passwordConfirm, nickname }) {
+  return (
+    validatePasswordConfirm(password, passwordConfirm) ||
+    validateLogin({ email, password }) ||
+    validateNickname(nickname)
+  );
 }
 
 // 게시글: 제목과 내용 모두 필요, 길이 제한
@@ -61,6 +78,11 @@ const ERROR_MESSAGES = [
   ['Invalid login credentials', '이메일 또는 비밀번호가 맞지 않습니다.'],
   ['Email not confirmed', '이메일 인증이 아직 완료되지 않았습니다.'],
   ['User already registered', '이미 가입된 이메일입니다.'],
+  ['Password should be at least', `비밀번호는 ${LIMITS.passwordMin}자 이상이어야 합니다.`],
+  ['weak password', '더 안전한 비밀번호를 사용해 주세요.'],
+  ['is invalid', '사용할 수 없는 이메일 주소입니다.'],
+  ['Signups not allowed', '현재 회원가입이 비활성화되어 있습니다.'],
+  ['Failed to fetch', '네트워크 연결을 확인해 주세요.'],
   ['rate limit', '요청이 너무 많습니다. 잠시 후 다시 시도해 주세요.'],
   ['row-level security', '권한이 없습니다. 로그인 상태를 확인해 주세요.'],
 ];
