@@ -76,3 +76,12 @@
     padding: 28px 32px;
   }
 }
+
+/* 게시판 위 "글쓰기" 버튼 줄 */
+.board__actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+  margin: 24px 0 32px;
+}

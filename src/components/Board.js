@@ -1,14 +1,13 @@
 // 게시판 전체 — 글쓰기 영역 + 글 목록
 import { el } from '../lib/dom.js';
 import { onAuthChange } from '../lib/auth.js';
-import { createPost, listPosts } from '../lib/posts.js';
+import { listPosts } from '../lib/posts.js';
 import { toKoreanError } from '../lib/validation.js';
-import { PostForm } from './PostForm.js';
 import { PostItem } from './PostItem.js';
 
 export function Board() {
   let currentUserId = null;
-  const writeArea = el('div', { className: 'board__write' });
+  const writeArea = el('div', { className: 'board__actions' });
   const list = el('ul', { className: 'board__list' });
   const status = el('p', { className: 'board__status', role: 'status', 'aria-live': 'polite' });
 
@@ -24,22 +23,17 @@ export function Board() {
     }
   }
 
-  // 로그인한 사람에게만 글쓰기 폼, 아니면 로그인 안내
+  // 글쓰기 폼은 펼쳐두지 않고 버튼만 둔다 → 누르면 글쓰기 페이지로 이동
+  // 로그인 전이면 같은 버튼이 로그인 페이지로 안내한다
   function renderWriteArea() {
-    if (currentUserId) {
-      writeArea.replaceChildren(PostForm({
-        onSave: async (values) => {
-          await createPost(values);
-          refresh();
-        },
-      }));
-    } else {
-      writeArea.replaceChildren(el('p', { className: 'board__login-hint' }, [
-        '글을 쓰려면 ',
-        el('a', { href: './login.html', text: '로그인' }),
-        '해 주세요.',
-      ]));
-    }
+    writeArea.replaceChildren(...[
+      el('a', {
+        className: 'btn-primary btn-link',
+        href: currentUserId ? './write.html' : './login.html',
+        text: '글쓰기',
+      }),
+      !currentUserId && el('span', { className: 'board__login-hint', text: '로그인 후 글을 쓸 수 있습니다.' }),
+    ].filter(Boolean));
   }
 
   onAuthChange((user) => {

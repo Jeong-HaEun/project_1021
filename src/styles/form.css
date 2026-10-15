@@ -81,6 +81,13 @@
   color: var(--color-brown);
 }
 
+/* 버튼처럼 보이는 링크 (페이지 이동용) */
+.btn-link {
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+}
+
 /* 필수 칸이 비었을 때의 비활성 모습 (자동완성 대응으로 aria-disabled 사용) */
 .btn-primary[aria-disabled='true'] {
   opacity: 0.5;

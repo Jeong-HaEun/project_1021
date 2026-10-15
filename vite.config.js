@@ -15,6 +15,7 @@ export default defineConfig({
         login: 'login.html',
         signup: 'signup.html',
         board: 'board.html',
+        write: 'write.html',
         forgot: 'forgot.html',
         reset: 'reset.html',
       },
