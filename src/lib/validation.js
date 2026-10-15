@@ -60,6 +60,11 @@ export function validateSignup({ email, password, passwordConfirm, nickname }) {
   );
 }
 
+// 비밀번호 재설정: 일치 여부 먼저 → 길이
+export function validateNewPassword({ password, passwordConfirm }) {
+  return validatePasswordConfirm(password, passwordConfirm) || validatePassword(password);
+}
+
 // 게시글: 제목과 내용 모두 필요, 길이 제한
 export function validatePost({ title, content }) {
   if (!title.trim()) return '제목을 입력해 주세요.';
@@ -83,6 +88,9 @@ const ERROR_MESSAGES = [
   ['is invalid', '사용할 수 없는 이메일 주소입니다.'],
   ['Signups not allowed', '현재 회원가입이 비활성화되어 있습니다.'],
   ['Failed to fetch', '네트워크 연결을 확인해 주세요.'],
+  ['For security purposes', '보안을 위해 잠시 후 다시 요청해 주세요.'],
+  ['should be different', '이전과 다른 비밀번호를 입력해 주세요.'],
+  ['Auth session missing', '재설정 링크가 만료됐습니다. 다시 요청해 주세요.'],
   ['rate limit', '요청이 너무 많습니다. 잠시 후 다시 시도해 주세요.'],
   ['row-level security', '권한이 없습니다. 로그인 상태를 확인해 주세요.'],
 ];

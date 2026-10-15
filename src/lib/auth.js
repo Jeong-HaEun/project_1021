@@ -27,6 +27,22 @@ export async function signOut() {
   if (error) throw error;
 }
 
+// 비밀번호 재설정 메일 발송
+// 메일 속 링크를 누르면 reset.html로 돌아오도록 주소를 함께 보낸다
+// (현재 페이지 기준 상대 주소라 개발 서버·GitHub Pages 둘 다 동작)
+// ⚠ 이 주소는 Supabase 대시보드 Redirect URLs에 등록돼 있어야 한다
+export async function sendPasswordReset(email) {
+  const redirectTo = new URL('./reset.html', window.location.href).href;
+  const { error } = await supabase.auth.resetPasswordForEmail(email.trim(), { redirectTo });
+  if (error) throw error;
+}
+
+// 새 비밀번호로 변경 — 재설정 링크로 들어와 임시 로그인된 상태에서만 가능
+export async function updatePassword(password) {
+  const { error } = await supabase.auth.updateUser({ password });
+  if (error) throw error;
+}
+
 // 지금 로그인한 사용자 (없으면 null)
 export async function getCurrentUser() {
   const { data } = await supabase.auth.getSession();

@@ -4,6 +4,7 @@ import {
   hasAllValues,
   toKoreanError,
   validateLogin,
+  validateNewPassword,
   validatePost,
   validateSignup,
 } from '../src/lib/validation.js';
@@ -99,5 +100,21 @@ describe('toKoreanError', () => {
 describe('formatDate', () => {
   it('YYYY.MM.DD 형식으로 바꾼다', () => {
     expect(formatDate('2026-10-05T12:00:00')).toBe('2026.10.05');
+  });
+});
+
+// 비밀번호 재설정 입력 검사
+describe('validateNewPassword', () => {
+  it('서로 다르면 불일치 안내', () => {
+    expect(validateNewPassword({ password: '123456', passwordConfirm: '123457' })).toBe('비밀번호가 일치하지 않습니다.');
+  });
+  it('같아도 6자 미만이면 길이 안내', () => {
+    expect(validateNewPassword({ password: '123', passwordConfirm: '123' })).toContain('6자 이상');
+  });
+  it('올바르면 빈 문자열', () => {
+    expect(validateNewPassword({ password: '123456', passwordConfirm: '123456' })).toBe('');
+  });
+  it('재설정 요청 제한 오류를 한국어로 바꾼다', () => {
+    expect(toKoreanError('For security purposes, you can only request this after 30 seconds.')).toContain('잠시 후');
   });
 });

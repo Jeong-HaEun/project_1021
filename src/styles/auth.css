@@ -60,3 +60,15 @@
     padding-top: 96px;
   }
 }
+
+/* 제목 아래 짧은 설명 (비밀번호 찾기·재설정) */
+.auth__desc {
+  margin: 0 0 24px;
+  color: var(--color-text-sub);
+  font-size: 14px;
+}
+
+/* 비밀번호 찾기 링크와 회원가입 링크 사이 간격을 좁힌다 */
+.auth__switch + .auth__switch {
+  margin-top: 8px;
+}

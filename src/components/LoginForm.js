@@ -46,6 +46,8 @@ export function LoginForm() {
     AuthLogo(),
     el('h1', { id: 'login-title', className: 'auth__title', text: '로그인' }),
     form,
+    // 회원가입 링크 위에 비밀번호 찾기 링크
+    el('p', { className: 'auth__switch' }, el('a', { href: './forgot.html', text: '비밀번호를 잊으셨나요?' })),
     AuthSwitchLink({ question: '아직 회원이 아니신가요?', href: './signup.html', label: '회원가입' }),
   ]);
 }
