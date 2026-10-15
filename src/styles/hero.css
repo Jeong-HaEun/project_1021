@@ -1,9 +1,10 @@
 /* 메인 히어로 — 가로 전체를 채우는 사진 + 왼쪽 여백의 HTML 텍스트 (원본 메인 구성 참고)
    강조는 제목 하나에만: 보조 설명·버튼은 굵기·크기·색을 낮추고, 그림자·그라데이션은 쓰지 않는다 */
 .hero {
-  /* 사진 밝기에 맞춘 글자색 (Hero.js의 HERO_TONE으로 고른다) */
-  --hero-text: var(--color-text);
-  --hero-sub: var(--color-text);
+  /* 사진 밝기에 맞춘 글자색 (Hero.js의 HERO_TONE으로 고른다)
+     밝은 사진(dark 톤): 검정 대신 브랜드 브라운 계열 — 제목·버튼은 진한 브라운, 슬로건·설명은 포인트 브라운 */
+  --hero-text: var(--color-brown-dark);
+  --hero-sub: var(--color-brown);
 
   position: relative;
   display: grid;
@@ -50,7 +51,6 @@
   font-family: var(--font-title-en);
   font-size: 13px;
   letter-spacing: 0.06em;
-  opacity: 0.8;
 }
 
 .hero__title {
@@ -115,7 +115,6 @@
   margin: 8px 0 0;
   color: var(--hero-sub);
   font-size: 12px;
-  opacity: 0.8;
 }
 
 @media (min-width: 900px) {
