@@ -7,6 +7,17 @@ const REPO_NAME = 'project_1021';
 
 export default defineConfig({
   base: `/${REPO_NAME}/`,
+  build: {
+    // 여러 페이지 사이트: 빌드할 HTML 파일을 모두 알려준다
+    rolldownOptions: {
+      input: {
+        main: 'index.html',
+        login: 'login.html',
+        signup: 'signup.html',
+        board: 'board.html',
+      },
+    },
+  },
   test: {
     // 테스트 파일은 tests/ 폴더에만 둔다
     include: ['tests/**/*.test.js'],

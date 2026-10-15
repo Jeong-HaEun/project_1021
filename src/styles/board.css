@@ -1,0 +1,78 @@
+/* 게시판 화면 */
+.board {
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.board__title {
+  margin: 0 0 4px;
+  font-family: var(--font-title-en);
+  font-weight: 400;
+  font-size: 32px;
+}
+
+.board__desc,
+.board__status,
+.board__login-hint {
+  color: var(--color-text-sub);
+  font-size: 14px;
+}
+
+.board__login-hint a {
+  color: var(--color-brown);
+}
+
+.board__write {
+  margin: 24px 0 32px;
+  padding: 20px 16px;
+  background: var(--color-bg-section);
+}
+
+.post-form__actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+}
+
+.board__list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.post-item {
+  padding: 24px 0;
+  border-top: 1px solid var(--color-line);
+}
+
+.post-item__title {
+  margin: 0 0 4px;
+  font-size: 18px;
+  font-weight: 500;
+  overflow-wrap: anywhere;
+}
+
+.post-item__meta {
+  margin: 0 0 12px;
+  font-size: 13px;
+  color: var(--color-text-sub);
+}
+
+.post-item__content {
+  margin: 0;
+  /* 줄바꿈을 입력한 그대로 보여준다 */
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+.post-item__actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 8px;
+}
+
+@media (min-width: 768px) {
+  .board__write {
+    padding: 28px 32px;
+  }
+}
