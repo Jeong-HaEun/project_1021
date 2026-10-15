@@ -1,0 +1,107 @@
+/* 메인 본문 ③ 후기 + ④ 성분과 특징 */
+
+/* ── ③ 후기: 큰 슬라이더 없이 작은 카드 ── */
+.review-stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 20px;
+  margin: 0 0 20px;
+  padding: 0;
+  list-style: none;
+  font-size: 14px;
+}
+
+.review-stats strong {
+  color: var(--color-brown);
+}
+
+.review-list {
+  display: grid;
+  gap: 12px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.review-card {
+  padding: 18px;
+  border: 1px solid var(--color-line);
+  border-radius: 12px;
+}
+
+.review-card__product {
+  margin: 0 0 8px;
+  color: var(--color-brown);
+  font-size: 12px;
+}
+
+.review-card__text {
+  margin: 0 0 12px;
+  font-size: 15px;
+  word-break: keep-all;
+}
+
+.review-card__text p {
+  margin: 0;
+}
+
+.review-card__meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin: 0;
+  color: var(--color-text-sub);
+  font-size: 12px;
+}
+
+.review-card__badge {
+  padding: 1px 8px;
+  border: 1px solid var(--color-line);
+  border-radius: 999px;
+}
+
+/* ── ④ 성분과 특징 ── */
+.reason-grid {
+  display: grid;
+  gap: 16px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.reason-card {
+  padding: 20px;
+  border-radius: 12px;
+  background: var(--color-bg-section);
+}
+
+.reason-card__title {
+  margin: 0 0 12px;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.reason-card__list {
+  display: grid;
+  grid-template-columns: 5.5em 1fr;
+  gap: 8px 12px;
+  margin: 0;
+  font-size: 14px;
+}
+
+.reason-card__list dt {
+  color: var(--color-text-sub);
+}
+
+.reason-card__list dd {
+  margin: 0;
+  word-break: keep-all;
+}
+
+@media (min-width: 768px) {
+  .review-list,
+  .reason-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}

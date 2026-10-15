@@ -1,0 +1,169 @@
+/* 메인 본문 섹션 공통 + ② 제품 비교
+   기존 디자인 규칙 그대로: 여백 넉넉히, 강조는 제목 하나, 그림자·그라데이션 없음 */
+.section {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 56px 0 8px;
+}
+
+.section__head {
+  margin-bottom: 28px;
+}
+
+.section__label {
+  margin: 0 0 6px;
+  color: var(--color-brown);
+  font-family: var(--font-title-en);
+  font-size: 13px;
+  letter-spacing: 0.06em;
+}
+
+.section__title {
+  margin: 0;
+  color: var(--color-brown-dark);
+  font-family: var(--font-ko);
+  font-size: 24px;
+  font-weight: 500;
+}
+
+.section__desc,
+.section__source,
+.section__more {
+  margin: 8px 0 0;
+  color: var(--color-text-sub);
+  font-size: 14px;
+  word-break: keep-all;
+}
+
+.section__source,
+.section__more {
+  margin-top: 20px;
+  font-size: 13px;
+}
+
+/* 글자 링크 (외부 링크는 ↗ 표시가 붙는다) */
+.text-link {
+  color: var(--color-brown);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.text-link:focus-visible,
+.btn-outline:focus-visible {
+  outline: 2px solid var(--color-brown);
+  outline-offset: 3px;
+}
+
+/* 얇은 테두리 버튼 — 히어로 버튼과 같은 모양 */
+.btn-outline {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 0 22px;
+  border: 1px solid var(--color-brown-dark);
+  border-radius: 999px;
+  color: var(--color-brown-dark);
+  font-size: 14px;
+  text-decoration: none;
+}
+
+.btn-outline:hover {
+  background: var(--color-brown-dark);
+  color: var(--color-bg-accent);
+}
+
+.section img {
+  display: block;
+  width: 100%;
+  height: auto;
+  background: var(--color-bg-section);
+}
+
+/* ── ② 제품 비교: 모바일 1열, 넓은 화면 2열 ── */
+.product-compare {
+  display: grid;
+  gap: 32px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* 비교가 목적이라 사진은 작은 썸네일로, 역할·용량·가격이 한눈에 보이게 */
+.product-card {
+  display: grid;
+  grid-template-columns: 96px 1fr;
+  gap: 16px;
+  align-items: start;
+}
+
+.product-card img {
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border-radius: 12px;
+}
+
+.product-card__name {
+  margin: 0 0 12px;
+  font-size: 18px;
+  font-weight: 500;
+}
+
+/* 역할·용량·가격 비교표 (두 카드가 같은 순서라 나란히 비교하기 쉽다) */
+.product-card__spec {
+  display: grid;
+  grid-template-columns: 3.5em 1fr;
+  gap: 6px 12px;
+  margin: 0 0 18px;
+  font-size: 14px;
+}
+
+.product-card__spec dt {
+  color: var(--color-text-sub);
+}
+
+.product-card__spec dd {
+  margin: 0;
+  word-break: keep-all;
+}
+
+/* 미니 세럼 안내: 같은 카드 안에서 용량·판매 조건만 구분 */
+.product-card__mini {
+  margin-top: 20px;
+  padding: 14px 16px;
+  border-radius: 12px;
+  background: var(--color-bg-section);
+  font-size: 13px;
+}
+
+.product-card__mini-title {
+  margin: 0 0 6px;
+}
+
+.product-card__mini-title del {
+  color: var(--color-text-sub);
+}
+
+.product-card__mini-notes {
+  margin: 0 0 8px;
+  padding-left: 1.1em;
+  color: var(--color-text-sub);
+}
+
+@media (min-width: 768px) {
+  .section {
+    padding-top: 88px;
+  }
+
+  .product-card {
+    grid-template-columns: 160px 1fr;
+    gap: 24px;
+  }
+
+  .section__title {
+    font-size: 28px;
+  }
+
+  .product-compare {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}

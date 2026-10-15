@@ -1,0 +1,166 @@
+/* 메인 본문 ⑤ 루틴, ⑥ FAQ, ⑦ 브랜드 이야기 */
+
+/* ── ⑤ 아침·저녁 루틴 ── */
+.routine-grid {
+  display: grid;
+  gap: 24px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.routine-card img {
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  border-radius: 12px;
+}
+
+.routine-card__time {
+  margin: 14px 0 8px;
+  font-size: 17px;
+  font-weight: 500;
+}
+
+.routine-card__steps {
+  margin: 0;
+  padding-left: 1.2em;
+  font-size: 14px;
+}
+
+.routine-card__steps li + li {
+  margin-top: 6px;
+}
+
+.routine-card__label {
+  margin-right: 8px;
+  color: var(--color-text-sub);
+}
+
+/* ── ⑥ FAQ + 가이드 글 ── */
+.faq-layout {
+  display: grid;
+  gap: 28px;
+}
+
+.faq-item {
+  border-bottom: 1px solid var(--color-line);
+}
+
+.faq-item summary {
+  min-height: 44px;
+  padding: 14px 0;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+.faq-item summary:focus-visible {
+  outline: 2px solid var(--color-brown);
+  outline-offset: 2px;
+}
+
+.faq-item__answer {
+  padding: 0 0 16px;
+  color: var(--color-text);
+  font-size: 14px;
+  word-break: keep-all;
+}
+
+.faq-item__answer p {
+  margin: 0 0 8px;
+}
+
+.faq-item__links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 16px;
+}
+
+.guide-card img {
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  border-radius: 12px;
+}
+
+.guide-card__label {
+  margin: 14px 0 4px;
+  color: var(--color-brown);
+  font-family: var(--font-title-en);
+  font-size: 12px;
+}
+
+.guide-card__title {
+  margin: 0 0 6px;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.guide-card__summary {
+  margin: 0 0 8px;
+  color: var(--color-text-sub);
+  font-size: 14px;
+}
+
+/* ── ⑦ 브랜드 이야기 ── */
+.brand {
+  padding-bottom: 24px;
+}
+
+.brand-layout {
+  display: grid;
+  gap: 24px;
+}
+
+.brand-layout img {
+  aspect-ratio: 3 / 2;
+  object-fit: cover;
+  border-radius: 12px;
+}
+
+.brand__quote {
+  margin: 0 0 14px;
+  color: var(--color-brown-dark);
+  font-size: 19px;
+  font-weight: 300;
+  word-break: keep-all;
+}
+
+.brand__quote p {
+  margin: 0 0 6px;
+}
+
+.brand__quote footer {
+  color: var(--color-text-sub);
+  font-size: 12px;
+}
+
+.brand__summary {
+  margin: 0 0 16px;
+  font-size: 15px;
+  word-break: keep-all;
+}
+
+.brand__links {
+  display: grid;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  .routine-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .faq-layout {
+    grid-template-columns: 3fr 2fr;
+    align-items: start;
+  }
+
+  .brand-layout {
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    gap: 48px;
+  }
+}
