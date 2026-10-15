@@ -27,3 +27,6 @@ dist-ssr
 .env
 .env.*
 !.env.example
+
+# 작업 요청 메모 (커밋하지 않음)
+prompt.md

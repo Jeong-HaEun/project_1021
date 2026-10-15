@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="robots" content="noindex" />
+<title>의존성 그래프 | project_1021</title>
+<style>
+  body { margin: 0; padding: 24px 16px; background: #111; color: #ddd; font-family: Pretendard, system-ui, sans-serif; }
+  h1 { margin: 0 0 4px; font-size: 22px; font-weight: 500; }
+  p { margin: 0 0 24px; color: #999; font-size: 14px; }
+  .graph { overflow-x: auto; }
+  details { margin-top: 32px; font-size: 13px; }
+  pre { white-space: pre-wrap; color: #aaa; }
+</style>
+</head>
+<body>
+<h1>src 의존성 그래프</h1>
+<p>페이지 시작점 4 · 컴포넌트 10 · 훅 0 · 유틸 · lib 5 · 외부 패키지 1 · 연결 39 — 생성: 2026-10-15</p>
+<div class="graph"><pre class="mermaid">
+flowchart TD
+  subgraph g_entry["페이지 시작점"]
+    n_boardPage_js["boardPage.js"]:::entry
+    n_loginPage_js["loginPage.js"]:::entry
+    n_main_js["main.js"]:::entry
+    n_signupPage_js["signupPage.js"]:::entry
+  end
+  subgraph g_component["컴포넌트"]
+    n_components_AuthParts_js["components/AuthParts.js"]:::component
+    n_components_Board_js["components/Board.js"]:::component
+    n_components_ConceptNotice_js["components/ConceptNotice.js"]:::component
+    n_components_LoginForm_js["components/LoginForm.js"]:::component
+    n_components_PageLayout_js["components/PageLayout.js"]:::component
+    n_components_PostForm_js["components/PostForm.js"]:::component
+    n_components_PostItem_js["components/PostItem.js"]:::component
+    n_components_SignupForm_js["components/SignupForm.js"]:::component
+    n_components_SiteNav_js["components/SiteNav.js"]:::component
+    n_components_Toast_js["components/Toast.js"]:::component
+  end
+  subgraph g_util["유틸 · lib"]
+    n_lib_auth_js["lib/auth.js"]:::util
+    n_lib_dom_js["lib/dom.js"]:::util
+    n_lib_posts_js["lib/posts.js"]:::util
+    n_lib_supabase_js["lib/supabase.js"]:::util
+    n_lib_validation_js["lib/validation.js"]:::util
+  end
+  subgraph g_pkg["외부 패키지"]
+    n_pkg__supabase_supabase_js[["@supabase/supabase-js"]]:::pkg
+  end
+  n_boardPage_js-->n_components_PageLayout_js
+  n_boardPage_js-->n_components_Board_js
+  n_components_AuthParts_js-->n_lib_dom_js
+  n_components_AuthParts_js-->n_lib_validation_js
+  n_components_Board_js-->n_lib_dom_js
+  n_components_Board_js-->n_lib_auth_js
+  n_components_Board_js-->n_lib_posts_js
+  n_components_Board_js-->n_lib_validation_js
+  n_components_Board_js-->n_components_PostForm_js
+  n_components_Board_js-->n_components_PostItem_js
+  n_components_LoginForm_js-->n_lib_dom_js
+  n_components_LoginForm_js-->n_lib_auth_js
+  n_components_LoginForm_js-->n_lib_validation_js
+  n_components_LoginForm_js-->n_components_AuthParts_js
+  n_components_LoginForm_js-->n_components_Toast_js
+  n_components_PageLayout_js-->n_components_ConceptNotice_js
+  n_components_PageLayout_js-->n_components_SiteNav_js
+  n_components_PostForm_js-->n_lib_dom_js
+  n_components_PostForm_js-->n_lib_validation_js
+  n_components_PostItem_js-->n_lib_dom_js
+  n_components_PostItem_js-->n_lib_validation_js
+  n_components_PostItem_js-->n_lib_posts_js
+  n_components_PostItem_js-->n_components_PostForm_js
+  n_components_SignupForm_js-->n_lib_dom_js
+  n_components_SignupForm_js-->n_lib_auth_js
+  n_components_SignupForm_js-->n_lib_validation_js
+  n_components_SignupForm_js-->n_components_AuthParts_js
+  n_components_SignupForm_js-->n_components_Toast_js
+  n_components_SiteNav_js-->n_lib_dom_js
+  n_components_SiteNav_js-->n_lib_auth_js
+  n_components_Toast_js-->n_lib_dom_js
+  n_lib_auth_js-->n_lib_supabase_js
+  n_lib_posts_js-->n_lib_supabase_js
+  n_lib_supabase_js-->n_pkg__supabase_supabase_js
+  n_loginPage_js-->n_components_PageLayout_js
+  n_loginPage_js-->n_components_LoginForm_js
+  n_main_js-->n_components_PageLayout_js
+  n_signupPage_js-->n_components_PageLayout_js
+  n_signupPage_js-->n_components_SignupForm_js
+  classDef entry fill:#3b2f24,stroke:#c9a27e,color:#f6e4d1
+  classDef component fill:#1f2a36,stroke:#7fa7c9,color:#e6eef5
+  classDef hook fill:#2a2236,stroke:#a98fd1,color:#efe9f7
+  classDef util fill:#1f3029,stroke:#82b89b,color:#e5f2eb
+  classDef pkg fill:#2b2b2b,stroke:#888,color:#ddd,stroke-dasharray:4 3
+</pre></div>
+<details><summary>Mermaid 원본 보기</summary><pre>flowchart TD
+  subgraph g_entry["페이지 시작점"]
+    n_boardPage_js["boardPage.js"]:::entry
+    n_loginPage_js["loginPage.js"]:::entry
+    n_main_js["main.js"]:::entry
+    n_signupPage_js["signupPage.js"]:::entry
+  end
+  subgraph g_component["컴포넌트"]
+    n_components_AuthParts_js["components/AuthParts.js"]:::component
+    n_components_Board_js["components/Board.js"]:::component
+    n_components_ConceptNotice_js["components/ConceptNotice.js"]:::component
+    n_components_LoginForm_js["components/LoginForm.js"]:::component
+    n_components_PageLayout_js["components/PageLayout.js"]:::component
+    n_components_PostForm_js["components/PostForm.js"]:::component
+    n_components_PostItem_js["components/PostItem.js"]:::component
+    n_components_SignupForm_js["components/SignupForm.js"]:::component
+    n_components_SiteNav_js["components/SiteNav.js"]:::component
+    n_components_Toast_js["components/Toast.js"]:::component
+  end
+  subgraph g_util["유틸 · lib"]
+    n_lib_auth_js["lib/auth.js"]:::util
+    n_lib_dom_js["lib/dom.js"]:::util
+    n_lib_posts_js["lib/posts.js"]:::util
+    n_lib_supabase_js["lib/supabase.js"]:::util
+    n_lib_validation_js["lib/validation.js"]:::util
+  end
+  subgraph g_pkg["외부 패키지"]
+    n_pkg__supabase_supabase_js[["@supabase/supabase-js"]]:::pkg
+  end
+  n_boardPage_js-->n_components_PageLayout_js
+  n_boardPage_js-->n_components_Board_js
+  n_components_AuthParts_js-->n_lib_dom_js
+  n_components_AuthParts_js-->n_lib_validation_js
+  n_components_Board_js-->n_lib_dom_js
+  n_components_Board_js-->n_lib_auth_js
+  n_components_Board_js-->n_lib_posts_js
+  n_components_Board_js-->n_lib_validation_js
+  n_components_Board_js-->n_components_PostForm_js
+  n_components_Board_js-->n_components_PostItem_js
+  n_components_LoginForm_js-->n_lib_dom_js
+  n_components_LoginForm_js-->n_lib_auth_js
+  n_components_LoginForm_js-->n_lib_validation_js
+  n_components_LoginForm_js-->n_components_AuthParts_js
+  n_components_LoginForm_js-->n_components_Toast_js
+  n_components_PageLayout_js-->n_components_ConceptNotice_js
+  n_components_PageLayout_js-->n_components_SiteNav_js
+  n_components_PostForm_js-->n_lib_dom_js
+  n_components_PostForm_js-->n_lib_validation_js
+  n_components_PostItem_js-->n_lib_dom_js
+  n_components_PostItem_js-->n_lib_validation_js
+  n_components_PostItem_js-->n_lib_posts_js
+  n_components_PostItem_js-->n_components_PostForm_js
+  n_components_SignupForm_js-->n_lib_dom_js
+  n_components_SignupForm_js-->n_lib_auth_js
+  n_components_SignupForm_js-->n_lib_validation_js
+  n_components_SignupForm_js-->n_components_AuthParts_js
+  n_components_SignupForm_js-->n_components_Toast_js
+  n_components_SiteNav_js-->n_lib_dom_js
+  n_components_SiteNav_js-->n_lib_auth_js
+  n_components_Toast_js-->n_lib_dom_js
+  n_lib_auth_js-->n_lib_supabase_js
+  n_lib_posts_js-->n_lib_supabase_js
+  n_lib_supabase_js-->n_pkg__supabase_supabase_js
+  n_loginPage_js-->n_components_PageLayout_js
+  n_loginPage_js-->n_components_LoginForm_js
+  n_main_js-->n_components_PageLayout_js
+  n_signupPage_js-->n_components_PageLayout_js
+  n_signupPage_js-->n_components_SignupForm_js
+  classDef entry fill:#3b2f24,stroke:#c9a27e,color:#f6e4d1
+  classDef component fill:#1f2a36,stroke:#7fa7c9,color:#e6eef5
+  classDef hook fill:#2a2236,stroke:#a98fd1,color:#efe9f7
+  classDef util fill:#1f3029,stroke:#82b89b,color:#e5f2eb
+  classDef pkg fill:#2b2b2b,stroke:#888,color:#ddd,stroke-dasharray:4 3</pre></details>
+<script type="module">
+  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+  mermaid.initialize({ startOnLoad: true, theme: 'dark', flowchart: { curve: 'basis' } });
+</script>
+</body>
+</html>
