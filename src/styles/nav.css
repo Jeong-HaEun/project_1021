@@ -141,14 +141,29 @@
   color: var(--color-brown);
 }
 
+/* 사람·장바구니 아이콘 — 링크(a)와 버튼(button)이 같은 크기·정렬이 되도록 */
 .site-nav__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   color: var(--color-text);
   min-width: 40px;
   min-height: 40px;
+  padding: 0;
   border: none;
   background: none;
-  font-size: 16px;
   cursor: pointer;
+}
+
+/* 원본처럼 얇은 선 아이콘, 글자보다 약간 크게 */
+.site-nav__icon svg {
+  width: 24px;
+  height: 24px;
+}
+
+.site-nav__icon:hover,
+.site-nav__icon:focus-visible {
+  color: var(--color-brown);
 }
 
 @media (min-width: 900px) {
