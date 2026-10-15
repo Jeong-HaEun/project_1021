@@ -1,0 +1,80 @@
+/* 메인 히어로 — 모바일: 글 → 이미지 순서(메시지를 먼저 읽게), 넓은 화면: 글 | 이미지 2단 */
+.hero {
+  display: grid;
+  gap: 32px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.hero__slogan {
+  margin: 0 0 12px;
+  color: var(--color-text-sub);
+  font-family: var(--font-title-en);
+  font-size: 14px;
+  letter-spacing: 0.08em;
+}
+
+.hero__title {
+  margin: 0 0 16px;
+  color: var(--color-brown-dark);
+  font-family: var(--font-ko);
+  font-size: 30px;
+  font-weight: 600;
+  line-height: 1.35;
+  letter-spacing: -0.02em;
+  word-break: keep-all; /* 한글 단어 중간에서 줄바꿈하지 않기 */
+}
+
+/* 제목을 "약사가 설계한 / 매일의 피부장벽 루틴" 두 줄로 고정 */
+.hero__title span {
+  display: block;
+}
+
+.hero__desc {
+  max-width: 28em;
+  margin: 0 0 28px;
+  color: var(--color-text);
+  font-size: 16px;
+  word-break: keep-all;
+}
+
+.hero__cta {
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  min-height: 52px;
+}
+
+.hero__cta-note {
+  margin: 8px 0 0;
+  color: var(--color-text-sub);
+  font-size: 13px;
+}
+
+.hero__media img {
+  width: 100%;
+  height: auto;
+  background: var(--color-bg-section);
+}
+
+@media (min-width: 900px) {
+  .hero {
+    grid-template-columns: 5fr 7fr;
+    align-items: center;
+    gap: 56px;
+    padding: 24px 0 16px;
+  }
+
+  .hero__title {
+    font-size: 44px;
+  }
+
+  .hero__desc {
+    font-size: 17px;
+  }
+
+  .hero__cta {
+    width: auto;
+    padding: 0 32px;
+  }
+}
