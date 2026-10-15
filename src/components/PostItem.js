@@ -14,7 +14,9 @@ export function PostItem({ post, currentUserId, onChange }) {
   function renderView() {
     // profiles는 본인 것만 읽을 수 있어서(RLS) 남의 닉네임 대신 '내 글' 표시만 한다
     const meta = [formatDate(post.created_at), isMine ? '내 글' : ''].filter(Boolean).join(' · ');
-    item.replaceChildren(
+    // 남의 글이면 isMine && ... 가 false가 되는데, replaceChildren에 그대로 넣으면
+    // 화면에 "false" 글자가 찍힌다 → filter(Boolean)로 빈 값을 걸러낸다
+    const children = [
       el('h2', { className: 'post-item__title', text: post.title }),
       el('p', { className: 'post-item__meta', text: meta }),
       el('p', { className: 'post-item__content', text: post.content }),
@@ -23,7 +25,8 @@ export function PostItem({ post, currentUserId, onChange }) {
         el('button', { type: 'button', className: 'btn-text', text: '삭제', onClick: handleDelete }),
       ]),
       message,
-    );
+    ];
+    item.replaceChildren(...children.filter(Boolean));
   }
 
   // 수정 모드: 같은 자리에 폼을 띄운다
